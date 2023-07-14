@@ -1,8 +1,9 @@
+#!/bin/bash
 #vnc
 read -t 10 -p "是否安装tigervnc(Whether to install tigervnc)? [Y/n]" yes_or_no
 case ${yes_or_no} in
   y | Y | "")
-    sudo apt install --no-install-recommends tigervnc-standalone-server tigervnc-tools -y
+    sudo apt install tigervnc-standalone-server tigervnc-tools -y
     echo "设置VNC密码(set the VNC password)"
     vncpasswd
     echo "geometry=1920x1200" >> ~/.vnc/config

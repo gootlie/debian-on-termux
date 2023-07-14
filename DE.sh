@@ -1,4 +1,5 @@
-sudo apt install --no-install-recommends awesome picom -y
+#!/bin/bash
+sudo apt install awesome picom -y
 cat >> /usr/local/bin/startwm <<- EOF
 export DISPLAY=:0
 awesome &

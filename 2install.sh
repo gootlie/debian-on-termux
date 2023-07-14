@@ -10,7 +10,7 @@ case ${yes_or_no} in
     read -t 10 -p "是否用Plank取代默认Dock(Whether to replace the default Dock with Plank) [Y/n]" yes_or_no
     case ${yes_or_no} in
       y | Y | "")
-        sudo apt install --no-install-recommends plank -y
+        sudo apt install plank -y
         echo "sleep 6 && plank &" >> /usr/local/bin/startx
         echo "请在xfce4-panel面板设置中移除面板2(Remove Panel 2 from xfce4-panel Settings)";;
       *)
@@ -27,7 +27,7 @@ esac
 read -t 10 -p "是否安装附加组件(xfce4-appfinder,thunar,xfce4-terminal,xarchiver,gvfs)? [Y/n]" yes_or_no
 case ${yes_or_no} in
   y | Y | "")
-    sudo apt install --no-install-recommends xfce4-appfinder thunar xfce4-terminal xarchiver gvfs -y;;
+    sudo apt install xfce4-appfinder thunar xfce4-terminal xarchiver gvfs -y;;
   *)
     echo "放弃Abort";;
 esac
@@ -36,29 +36,27 @@ esac
 read -t 10 -p "是否将语言设置为简体中文(Whether to set the language to Chinese Simplified)? [Y/n]" yes_or_no
 case ${yes_or_no} in
   y | Y | "")
-    sudo apt install --no-install-recommends locales -y
+    sudo apt install locales -y
     echo "zh_CN.UTF-8 UTF-8" >> /etc/locale.gen
     sudo locale-gen
     echo "LANG=zh_CN.UTF-8" >> /etc/locale.conf
-    sudo apt install --no-install-recommends fonts-wqy-microhei -y
+    sudo apt install fonts-wqy-microhei -y
     
     echo "正在将简体中文设为默认语言"
-    cat >> ~/.profile <<- EOF
-    LANG=zh_CN.UTF-8
-    LC_CTYPE=zh_CN.UTF-8
-    LC_NUMERIC=zh_CN.UTF-8
-    LC_TIME=zh_CN.UTF-8
-    LC_COLLATE=zh_CN.UTF-8
-    LC_MONETARY=zh_CN.UTF-8
-    LC_MESSAGES=zh_CN.UTF-8
-    LC_PAPER=zh_CN.UTF-8
-    LC_NAME=zh_CN.UTF-8
-    LC_ADDRESS=zh_CN.UTF-8
-    LC_TELEPHONE=zh_CN.UTF-8
-    LC_MEASUREMENT=zh_CN.UTF-8
-    LC_IDENTIFICATION=zh_CN.UTF-8
-    LC_ALL=
-    EOF;;
+    echo "LANG=zh_CN.UTF-8" >> ~/.profile
+    echo "LC_CTYPE=zh_CN.UTF-8" >> ~/.profile
+    echo "LC_NUMERIC=zh_CN.UTF-8" >> ~/.profile
+    echo "LC_TIME=zh_CN.UTF-8" >> ~/.profile
+    echo "LC_COLLATE=zh_CN.UTF-8" >> ~/.profile
+    echo "LC_MONETARY=zh_CN.UTF-8" >> ~/.profile
+    echo "LC_MESSAGES=zh_CN.UTF-8" >> ~/.profile
+    echo "LC_PAPER=zh_CN.UTF-8" >> ~/.profile
+    echo "LC_NAME=zh_CN.UTF-8" >> ~/.profile
+    echo "LC_ADDRESS=zh_CN.UTF-8" >> ~/.profile
+    echo "LC_TELEPHONE=zh_CN.UTF-8" >> ~/.profile
+    echo "LC_MEASUREMENT=zh_CN.UTF-8" >> ~/.profile
+    echo "LC_IDENTIFICATION=zh_CN.UTF-8" >> ~/.profile
+    echo "LC_ALL=" >> ~/.profile;;
   *)
     echo "放弃Abort";;
 esac
@@ -76,7 +74,7 @@ esac
 read -t 10 -p "是否安装pulseaudio音频服务(Whether to install pulseaudio)? [Y/n]" yes_or_no
 case ${yes_or_no} in
   y | Y | "")
-    sudo apt install --no-install-recommends pulseaudio -y;;
+    sudo apt install pulseaudio -y;;
   *)
     echo "放弃Abort";;
 esac
@@ -85,18 +83,16 @@ esac
 read -t 10 -p "是否安装fcitx5输入法(Whether to install fcitx5 Input Method)? [Y/n]" yes_or_no
 case ${yes_or_no} in
   y | Y | "")
-    sudo apt install --no-install-recommends fcitx5 fcitx5-pinyin fcitx5-config-qt -y
+    sudo apt install fcitx5 fcitx5-pinyin fcitx5-config-qt -y
     
     echo "正在将fcitx5设为默认输入法"
-    cat >> /etc/environment <<- EOF
-    XIM=fcitx5
-    XIM_PROGRAM=fcitx5
-    GTK_IM_MODULE=fcitx5
-    QT_IM_MODULE=fcitx5
-    XMODIFIERS=@im=fcitx5
-    SDL_IM_MODULE=fcitx5
-    GLFW_IM_MODULE=fcitx5
-    EOF;;
+    echo "XIM=fcitx5" >> /etc/environment
+    echo "XIM_PROGRAM=fcitx5" >> /etc/environment
+    echo "GTK_IM_MODULE=fcitx5" >> /etc/environment
+    echo "QT_IM_MODULE=fcitx5" >> /etc/environment
+    echo "XMODIFIERS=@im=fcitx5" >> /etc/environment
+    echo "SDL_IM_MODULE=fcitx5" >> /etc/environment
+    echo "GLFW_IM_MODULE=fcitx5" >> /etc/environment;;
   *)
     echo "放弃Abort";;
 esac

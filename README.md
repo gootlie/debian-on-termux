@@ -11,7 +11,7 @@
 3. 安装Debian后执行`proot-distro login debian --user root --shared-tmp`进入proot容器的Debian系统，此时登录用户为root。`--shared-tmp`参数共享`\tmp`目录，否则不能使用termux-x11输出图形。
 4. 在proot容器内执行
 
-   `apt install wget -y && wget https://raw.githubusercontent.com/gootlie/debian-on-termux/main/1user.sh && chmod +x ./1user.sh && ./1user.sh` 
+   `apt update && apt upgrade -y && apt install wget -y && wget https://raw.githubusercontent.com/gootlie/debian-on-termux/main/1user.sh && chmod +x ./1user.sh && ./1user.sh` 
 
    若下载速度慢可自行换源，在/etc/sources.list中添加镜像源。
 
@@ -25,13 +25,14 @@
    若要使用awesome+picom的方案，在proot容器内执行
 
    `wget https://raw.githubusercontent.com/gootlie/debian-on-termux/main/DE.sh && chmod +x ./DE.sh && ./DE.sh` 
-4. WindowsFonts字体库 
+3. WindowsFonts字体库 
+
    若要安装WindowsFonts字体库，请自行寻找相关字体资源或从Windos电脑的C:\Windows\Fonts目录复制字体文件，将字体文件放在手机/平板文件的/xinhao/WindowsFonts文件夹下(没有则自行创建，或在本仓库中下载的WindosFonts.sh脚本中修改文件路径)，然后执行
 
    `wget https://raw.githubusercontent.com/gootlie/debian-on-termux/main/WindowsFonts.sh && chmod +x ./WindowsFonts.sh && ./WindowsFonts.sh`
 
    为节省空间，本脚本采用对字体文件创建软链接的方式实现。安装Windows字体库可解决WPS字体缺失问题。
-6. box+wine
+4. box+wine
 
    若想运行exe文件，在proot容器内执行
 

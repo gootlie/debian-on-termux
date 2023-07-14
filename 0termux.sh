@@ -23,6 +23,23 @@ case ${yes_or_no} in
     echo "放弃Abort";;
 esac
 
+#pulseaudio
+read -t 10 -p "是否安装pulseaudio(Whether to install pulseaudio)? [Y/n]" yes_or_no
+case ${yes_or_no} in
+  y | Y | "")
+    pkg install pulseaudio -y
+    read -t 10 -p "是否设置pulseaudio自动启动(Whether to to set pulseaudio start automatically)? [Y/n]" yes_or_no
+    case ${yes_or_no} in
+      y | Y | "")
+        echo "pulseaudio --start --load=\"module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1\" --exit-idle-time=-1" >> ~/.profile
+        echo "pacmd load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" >> ~/.profile;;
+      *)
+        echo "放弃Abort";;
+    esac;;
+  *)
+    echo "放弃Abort";;
+esac
+
 #virgl
 read -t 10 -p "是否安装virgl(Whether to install virgl)? [Y/n]" yes_or_no
 case ${yes_or_no} in
@@ -41,28 +58,10 @@ case ${yes_or_no} in
     echo "放弃Abort";;
 esac
 
-#pulseaudio
-read -t 10 -p "是否安装pulseaudio(Whether to install pulseaudio)? [Y/n]" yes_or_no
-case ${yes_or_no} in
-  y | Y | "")
-    pkg install pulseaudio -y
-    read -t 10 -p "是否设置pulseaudio自动启动(Whether to to set pulseaudio start automatically)? [Y/n]" yes_or_no
-    case ${yes_or_no} in
-      y | Y | "")
-        echo "pulseaudio --start --load=\"module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1\" --exit-idle-time=-1" >> ~/.profile
-        echo "pacmd load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" >> ~/.profile;;
-      *)
-        echo "放弃Abort";;
-    esac;;
-  *)
-    echo "放弃Abort";;
-esac
-
-pkg install proot-distro -y
-
 read -t 10 -p "是否安装Debian(Whether to install debian)? [Y/n]" yes_or_no
 case ${yes_or_no} in
   y | Y | "")
+    pkg install proot-distro -y
     proot-distro install debian
     echo "输入proot-distro login debian --user root --shared-tmp以root用户共享tmp登入debian"
     echo "echo \"输入proot-distro login debian --user root --shared-tmp以root用户共享tmp登入debian\"" >> ~/.profile;;

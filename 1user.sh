@@ -1,7 +1,7 @@
 #!/bin/bash
 cd
 apt update && apt upgrade -y
-apt install --no-install-recommends sudo -y
+apt install sudo -y
 
 #设置用户
 read -t 10 -p "是否添加一般用户(Whether to add a generic user)? [Y/n]" yes_or_no_user
@@ -34,14 +34,13 @@ case ${yes_or_no_user} in
     echo "放弃Abort";;
 esac
 echo "正在下载安装脚本(Downloading install script)"
-wget https://raw.githubusercontent.com/gootlie/debian-on-termux/main/2install.sh
-cp ./2install.sh /home/${your_username}/
-chmod +x /home/${your_username}/2install.sh
+wget https://raw.githubusercontent.com/gootlie/debian-on-termux/main/2install.sh && chmod +x ./2install.sh
 case ${yes_or_no_user} in
   y | Y | "")
-    echo "正在为用户&{your_username}进行配置"
+    cp ./2install.sh /home/${your_username}/ && chmod +x /home/${your_username}/2install.sh    
+    echo "正在为用户${your_username}进行配置"
     su - ${your_username} -s /home/${your_username}/2install.sh;;
   *)
     echo "正在为用户$USER进行配置"
-    /home/${your_username}/2install.sh;;
+    ./2install.sh;;
 esac
