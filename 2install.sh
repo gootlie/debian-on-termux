@@ -51,7 +51,7 @@ case ${yes_or_no} in
     echo "LC_MONETARY=zh_CN.UTF-8" >> ~/.profile
     echo "LC_MESSAGES=zh_CN.UTF-8" >> ~/.profile
     echo "LC_PAPER=zh_CN.UTF-8" >> ~/.profile
-    echo "LC_NAME=zh_CN.UTF-8" >> ~/.profile
+    echo "LC_NAME=zh_CN.UTF-8" >> ~/.profile 
     echo "LC_ADDRESS=zh_CN.UTF-8" >> ~/.profile
     echo "LC_TELEPHONE=zh_CN.UTF-8" >> ~/.profile
     echo "LC_MEASUREMENT=zh_CN.UTF-8" >> ~/.profile
@@ -65,7 +65,7 @@ esac
 read -t 10 -p "是否将时区设置为Shanghai(Whether to set the timezone to Shanghai)? [Y/n]" yes_or_no
 case ${yes_or_no} in
   y | Y | "")
-    sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime;;
+    sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime;; 
   *)
     echo "放弃Abort";;
 esac
@@ -80,10 +80,10 @@ case ${yes_or_no} in
 esac
 
 #fcitx5输入法
-read -t 10 -p "是否安装fcitx5输入法(Whether to install fcitx5 Input Method)? [Y/n]" yes_or_no
+read -t 10 -p "是否安装fcitx5输入法(Whether to install fcitx5 Input Method)? [Y/n]" yes_or_no  
 case ${yes_or_no} in
   y | Y | "")
-    sudo apt install fcitx5 fcitx5-pinyin fcitx5-config-qt -y
+    sudo apt install --no-install-recommends fcitx5 fcitx5-pinyin fcitx5-config-qt -y 
     
     echo "正在将fcitx5设为默认输入法"
     echo "XIM=fcitx5" >> /etc/environment
