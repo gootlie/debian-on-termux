@@ -5,7 +5,7 @@ case ${yes_or_no} in
   y | Y | "")
     sudo apt install xfdesktop4 xfwm4 xfce4-session xfce4-panel dbus dbus-x11 -y
     echo "export DISPLAY=:0" >> /usr/local/bin/startx
-    echo "dbus-launch --exit-with-session xfce4-session &" >> /usr/local/bin/startx
+    echo "dbus-launch --exit-with-session startxfce4 &" >> /usr/local/bin/startx
     #plank
     read -t 10 -p "是否用Plank取代默认Dock(Whether to replace the default Dock with Plank) [Y/n]" yes_or_no
     case ${yes_or_no} in

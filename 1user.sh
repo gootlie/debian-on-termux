@@ -37,7 +37,7 @@ echo "正在下载安装脚本(Downloading install script)"
 wget https://raw.githubusercontent.com/gootlie/debian-on-termux/main/2install.sh && chmod +x ./2install.sh
 case ${yes_or_no_user} in
   y | Y | "")
-    cp ./2install.sh /home/${your_username}/ && chmod +x /home/${your_username}/2install.sh    
+    cp ./2install.sh /home/${your_username}/ && chmod +x /home/${your_username}/2install.sh
     echo "正在为用户${your_username}进行配置"
     su - ${your_username} -s /home/${your_username}/2install.sh;;
   *)
