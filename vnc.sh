@@ -13,7 +13,7 @@ case ${yes_or_no} in
     read -t 10 -p "是否为xfce4配置vnc服务(Whether to set vnc server for xfce4)? [Y/n]" yes_or_no
     case ${yes_or_no} in
       y | Y | "")
-        echo -e "dbus-launch --exit-with-session startxfce4 &\nsleep6 && plank" >> ~/.vnc/xfce4 && chmod +x ~/.vnc/xfce4
+        echo -e "dbus-launch --exit-with-session startxfce4 &\nsleep 6 && plank" >> ~/.vnc/xfce4 && chmod +x ~/.vnc/xfce4
         echo "vncserver -xstartup ~/.vnc/xfce4 :\${1:-1}" >> /usr/local/bin/vncx && chmod +x /usr/local/bin/vncx
         echo "输入vncx 端口数(例:vncwm 2,缺省为1)启动xfce4(vnc)"
         echo "echo \"输入vncx 端口数(例:vncwm 2,缺省为1)启动xfce4(vnc)\"" >> ~/.bashrc;;
