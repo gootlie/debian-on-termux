@@ -1,5 +1,21 @@
 #!/bin/bash
 cd
+#换源（清华源）
+mv /etc/sources.list /etc/sources.list.backup
+cat >> /etc/sources.list <<- EOF
+# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware
+# deb https://mirrors.tuna.tsinghua.edu.cn/debian-security bookworm-security main contrib non-free non-free-firmware
+# # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian-security bookworm-security main contrib non-free non-free-firmware
+deb https://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+# deb-src https://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+EOF
+
 apt update && apt upgrade -y
 apt install sudo -y
 
@@ -37,7 +53,7 @@ echo "正在下载安装脚本(Downloading install script)"
 wget https://raw.githubusercontent.com/gootlie/debian-on-termux/main/2install.sh && chmod +x ./2install.sh
 case ${yes_or_no_user} in
   y | Y | "")
-    cp ./2install.sh /home/${your_username}/ && chmod +x /home/${your_username}/2install.sh
+    mv ./2install.sh /home/${your_username}/ && chmod +x /home/${your_username}/2install.sh
     echo "正在为用户${your_username}进行配置"
     su - ${your_username} -s /home/${your_username}/2install.sh;;
   *)

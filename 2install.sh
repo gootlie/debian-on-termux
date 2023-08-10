@@ -4,22 +4,22 @@ read -t 10 -p "是否精简安装xfce4? [Y/n]" yes_or_no
 case ${yes_or_no} in
   y | Y | "")
     sudo apt install xfdesktop4 xfwm4 xfce4-session xfce4-panel dbus dbus-x11 -y
-    echo "export DISPLAY=:0" >> /usr/local/bin/startx
-    echo "dbus-launch --exit-with-session startxfce4 &" >> /usr/local/bin/startx
+    echo "export DISPLAY=:0" >> /usr/local/bin/start-xfce4
+    echo "dbus-launch --exit-with-session startxfce4 &" >> /usr/local/bin/start-xfce4
     #plank
     read -t 10 -p "是否用Plank取代默认Dock(Whether to replace the default Dock with Plank) [Y/n]" yes_or_no
     case ${yes_or_no} in
       y | Y | "")
         sudo apt install plank -y
-        echo "sleep 6 && plank &" >> /usr/local/bin/startx
+        echo "sleep 6 && plank &" >> /usr/local/bin/start-xfce4
         echo "请在xfce4-panel面板设置中移除面板2(Remove Panel 2 from xfce4-panel Settings)";;
       *)
         echo "放弃Abort";;
     esac
   
-    chmod +x /usr/local/bin/startx
-    echo "输入startx启动xfce4桌面"
-    echo "echo \"输入startx启动xfce4桌面\"" >> ~/.bashrc;;
+    chmod +x /usr/local/bin/start-xfce4
+    echo "输入start-xfce4启动xfce4桌面"
+    echo "echo \"输入start-xfce4启动xfce4桌面\"" >> ~/.bashrc;;
   *)
     echo "放弃Abort";;
 esac
@@ -37,12 +37,10 @@ read -t 10 -p "是否将语言设置为简体中文(Whether to set the language 
 case ${yes_or_no} in
   y | Y | "")
     sudo apt install locales -y
+    echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
     echo "zh_CN.UTF-8 UTF-8" >> /etc/locale.gen
     sudo locale-gen
-    echo "LANG=zh_CN.UTF-8" >> /etc/locale.conf
     sudo apt install fonts-wqy-microhei -y
-    
-    echo "正在将简体中文设为默认语言"
     echo "LANG=zh_CN.UTF-8" >> ~/.profile
     echo "LC_CTYPE=zh_CN.UTF-8" >> ~/.profile
     echo "LC_NUMERIC=zh_CN.UTF-8" >> ~/.profile
