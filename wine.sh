@@ -33,7 +33,7 @@ mkdir wine && cd wine
 wget https://github.com/Kron4ek/Wine-Builds/releases/download/8.11/wine-8.11-amd64.tar.xz
 tar -xvf wine-8.11-amd64.tar.xz
 mv ~/wine/wine-8.11-amd64/* ~/wine
-#rm -rf wine-8.11-amd64.tar.xz wine-8.11-amd64
+rm -rf wine-8.11-amd64.tar.xz wine-8.11-amd64
 sudo ln -s ~/wine/bin/wine64 /usr/local/bin/wine64
 sudo ln -s ~/wine/bin/wine /usr/local/bin/wine
 cd ~/

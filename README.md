@@ -2,7 +2,7 @@
 1. 自用termux安装脚本，归档以便再次部署。本脚本实现了在termux中安装debian系统，用termux-x11显示图形界面，安装精简的xfce4桌面环境，并可扩展配置中文、音频、fcitx5输入法、vnc服务等，提供了awesome+picom的平铺式窗口管理器的方案。
 2. 本脚本基本实现了自动安装，除系统的交互外均为无操作10秒自动继续进行。
 ## 基本安装
-1. 安装termux和termux-x11，[termux](https://github.com/termux/termux-app)可使用[ZeroTermux](https://github.com/hanxinhao000/ZeroTermux)，相比原版增加了许多实用的功能。[termux-x11](https://github.com/termux/termux-x11)需要安装apk并在termux内安装deb，本脚本会自动安装在termux中安装deb，请自行[下载apk](https://raw.githubusercontent.com/gootlie/debian-on-termux/main/app-arm64-v8a-debug.apk)安装，若不想使用本仓库提供的安装包，也可在官方[last successful build](https://github.com/termux/termux-x11/actions/workflows/debug_build.yml)下载安装。
+1. 安装termux和termux-x11，[termux](https://github.com/termux/termux-app)可使用[ZeroTermux](https://github.com/hanxinhao000/ZeroTermux)，相比原版增加了许多实用的功能。[termux-x11](https://github.com/termux/termux-x11)需要安装apk并在termux内安装deb，本脚本会自动在termux中安装deb，请自行[下载apk](https://raw.githubusercontent.com/gootlie/debian-on-termux/main/app-arm64-v8a-debug.apk)安装，若不想使用本仓库提供的安装包，也可在官方[last successful build](https://github.com/termux/termux-x11/actions/workflows/debug_build.yml)下载安装。
 2. 在termux中执行
 
    `pkg install wget -y && wget https://raw.githubusercontent.com/gootlie/debian-on-termux/main/0termux.sh && chmod +x ./0termux.sh && ./0termux.sh`  
@@ -13,9 +13,10 @@
 
    `apt update && apt upgrade -y && apt install wget -y && wget https://raw.githubusercontent.com/gootlie/debian-on-termux/main/1user.sh && chmod +x ./1user.sh && ./1user.sh` 
 
-   若下载速度慢可自行换源，在/etc/apt/sources.list中添加镜像源。
+   本脚本自动换源为清华源，原镜像文件备份为/etc/apt/sources.list.backup。
 
    推荐创建一般用户，创建以后在termux内可以执行`proot-distro login debian --user 你的用户名 --shared-tmp`以你创建的用户登录Debian。
+5. 配置完成后，在proot内执行启动脚本，然后打开termux-x11即可显示图形界面。
 ## 扩展安装
 1. vnc
 
@@ -25,18 +26,28 @@
    若要使用awesome+picom的方案，在proot容器内执行
 
    `wget https://raw.githubusercontent.com/gootlie/debian-on-termux/main/DE.sh && chmod +x ./DE.sh && ./DE.sh` 
-3. WindowsFonts字体库 
+3. wps office
 
-   若要安装WindowsFonts字体库，请自行寻找相关字体资源或从Windos电脑的C:\Windows\Fonts目录复制字体文件，将字体文件放在手机/平板文件的/xinhao/WindowsFonts文件夹下(没有则自行创建，或在本仓库中下载的WindosFonts.sh脚本中修改文件路径)，然后执行
+    请自行在wps官网下载wps for linux arm64安装包，并移动到/xinhao/wps文件夹下(没有则自行创建，或在本仓库中下载的wps.sh脚本中修改文件路径)，然后执行
+
+    `wget https://raw.githubusercontent.com/gootlie/debian-on-termux/main/wps.sh && chmod +x ./wps.sh && ./wps.sh`
+
+    由于用户组问题，似乎只能在root用户下安装，但安装后一般用户也可使用。
+
+    wpspdf无法使用的问题，可安装libtiff5(依赖于libwebp6，需先安装libwebp6)，需要下载deb安装，本脚本会自动下载安装。
+
+    字体库缺失问题参考下一条。
+4. WindowsFonts字体库
+
+   请自行寻找相关字体资源或从Windos电脑的C:\Windows\Fonts目录复制字体文件，将字体文件放在手机/平板文件的/xinhao/WindowsFonts文件夹下(没有则自行创建，或在本仓库中下载的WindosFonts.sh脚本中修改文件路径)，然后执行
 
    `wget https://raw.githubusercontent.com/gootlie/debian-on-termux/main/WindowsFonts.sh && chmod +x ./WindowsFonts.sh && ./WindowsFonts.sh`
 
    为节省空间，本脚本采用对字体文件创建软链接的方式实现。安装Windows字体库可解决WPS字体缺失问题。
-4. box+wine
+5. box+wine
 
    若想运行exe文件，在proot容器内执行
 
    `wget https://raw.githubusercontent.com/gootlie/debian-on-termux/main/wine.sh && chmod +x ./wine.sh && ./wine.sh`   
 
    此脚本来源于[Termux Proot安裝Box64與Box86，Android手機執行Windows exe](https://ivonblog.com/posts/termux-proot-box86-box64/)，运行部分应用如微信、网易云时尚有报错未能解决。
-## 配置详解
