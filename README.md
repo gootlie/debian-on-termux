@@ -13,7 +13,7 @@
 
    `apt update && apt upgrade -y && apt install wget -y && wget https://raw.githubusercontent.com/gootlie/debian-on-termux/main/1user.sh && chmod +x ./1user.sh && ./1user.sh` 
 
-   若下载速度慢可自行换源，在/etc/sources.list中添加镜像源。
+   若下载速度慢可自行换源，在/etc/apt/sources.list中添加镜像源。
 
    推荐创建一般用户，创建以后在termux内可以执行`proot-distro login debian --user 你的用户名 --shared-tmp`以你创建的用户登录Debian。
 ## 扩展安装

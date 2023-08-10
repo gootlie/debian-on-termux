@@ -1,8 +1,8 @@
 #!/bin/bash
 cd
 #换源（清华源）
-mv /etc/sources.list /etc/sources.list.backup
-cat >> /etc/sources.list <<- EOF
+mv /etc/apt/sources.list /etc/apt/sources.list.backup
+cat >> /etc/apt/sources.list <<- EOF
 # 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
 deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware
 # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware
