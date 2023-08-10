@@ -1,7 +1,7 @@
 #!/bin/bash
 cd
 #换源（清华源）
-read -t 10 -p "是否换源为清华源等(Weather to set mirrorlist to tsinghua)? [Y/n]" yes_or_no
+read -t 10 -p "是否换源为清华源(Weather to set mirrorlist to tsinghua)? [Y/n]" yes_or_no
 case ${yes_or_no} in
 y | Y | "")
 echo "正在换源为清华源，原镜像文件备份为/etc/apt/sources.list.backup"
@@ -18,7 +18,8 @@ deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib
 # # deb-src https://mirrors.tuna.tsinghua.edu.cn/debian-security bookworm-security main contrib non-free non-free-firmware
 deb https://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
 # deb-src https://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
-EOF;;
+EOF
+;;
 *)
   echo "放弃Abort";;
 esac
