@@ -8,7 +8,6 @@ read -t 10 -p "是否安装termux-x11(Whether to install termux-x11)? [Y/n]" yes
 case ${yes_or_no} in
   y | Y | "")
     pkg install x11-repo -y
-    pkg install xwayland xorg-server-xvfb -y
     pkg install termux-x11-nightly -y
     read -t 10 -p "是否设置x11服务自动启动(Whether to to set x11 server start automatically)? [Y/n]" yes_or_no
       case ${yes_or_no} in
