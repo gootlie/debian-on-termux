@@ -26,7 +26,7 @@ esac
 
 apt update && apt upgrade -y
 apt install sudo -y
-
+apt install wget -y
 #设置用户
 read -t 10 -p "是否添加一般用户(Whether to add a generic user)? [Y/n]" yes_or_no_user
 case ${yes_or_no_user} in
