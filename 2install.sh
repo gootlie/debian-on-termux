@@ -1,15 +1,9 @@
 #!/bin/bash
 #xfce4
-read -t 10 -p "是否安装xfce4? [Y/n]" yes_or_no
+read -t 10 -p "是否精简安装xfce4? [Y/n]" yes_or_no
 case ${yes_or_no} in
   y | Y | "")
-    read -t 10 -p "请输入1/2(默认为1)选择：1-完整版/2-精简版" 1/2
-    case ${1/2} in
-      1 | "" | *)
-         sudo apt install xfce4 dbus dbus-x11 -y;;
-      2)
-         sudo apt install xfdesktop4 xfwm4 xfce4-session xfce4-panel dbus dbus-x11 -y;;
-    esac
+    sudo apt install xfdesktop4 xfwm4 xfce4-session xfce4-panel dbus dbus-x11 -y
     echo "export DISPLAY=:0" >> /usr/local/bin/start-xfce4
     echo "dbus-launch --exit-with-session startxfce4 &" >> /usr/local/bin/start-xfce4
     #plank
