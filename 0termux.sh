@@ -55,10 +55,10 @@ case ${yes_or_no} in
     echo "放弃Abort";;
 esac
 
+pkg install proot-distro -y
 read -t 10 -p "是否安装Debian(Whether to install debian)? [Y/n]" yes_or_no
 case ${yes_or_no} in
   y | Y | "")
-    pkg install proot-distro -y
     proot-distro install debian
     echo "输入proot-distro login debian --user root --shared-tmp以root用户共享tmp登入debian"
     echo "echo \"输入proot-distro login debian --user root --shared-tmp以root用户共享tmp登入debian\"" >> ~/.profile
